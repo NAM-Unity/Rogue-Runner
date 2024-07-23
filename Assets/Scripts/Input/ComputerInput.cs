@@ -9,9 +9,9 @@ public class ComputerInput : MonoBehaviour, IInput
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.LeftArrow)) SideSwipe?.Invoke(-1);
-        if (Input.GetKey(KeyCode.RightArrow)) SideSwipe?.Invoke(1);
-        if (Input.GetKey(KeyCode.UpArrow)) UpSwipe?.Invoke();
-        if (Input.GetKey(KeyCode.DownArrow)) DownSwipe?.Invoke();
+        if (Input.GetKeyDown(KeyCode.LeftArrow)) SideSwipe?.Invoke(-1);
+        if (Input.GetKeyDown(KeyCode.RightArrow)) SideSwipe?.Invoke(1);
+        if (Input.GetKeyDown(KeyCode.UpArrow)) UpSwipe?.Invoke();
+        if (Input.GetKeyDown(KeyCode.DownArrow)) DownSwipe?.Invoke();
     }
 }

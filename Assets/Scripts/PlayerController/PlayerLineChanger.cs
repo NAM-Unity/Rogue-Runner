@@ -5,7 +5,7 @@ public class PlayerLineChanger : MonoBehaviour
     [SerializeField] private float _speed = 5f;
     [SerializeField] private Rigidbody2D _rb;
 
-    private int _destention = 0;
+    private float _destention;
     private bool _isMoving = false;
 
     private void FixedUpdate()
@@ -16,16 +16,18 @@ public class PlayerLineChanger : MonoBehaviour
         var distance = Mathf.Abs(distanceVector);
         var moveAmount = _speed * Time.fixedDeltaTime;
 
-        if (distance < _speed * moveAmount)
+        Debug.Log(distanceVector);
+
+        if (distance < moveAmount)
         {
             _isMoving = false;
             moveAmount = distance;
         }
 
-        _rb.MovePosition(_rb.position + Mathf.Sign(distanceVector) * moveAmount * Vector2.right);
+        _rb.MovePosition(_rb.position + Mathf.Sign(distanceVector) * moveAmount * Vector2.left);
     }
 
-    public void ChangeLine(int destention)
+    public void ChangeLine(float destention)
     {
         _destention = destention;
         _isMoving = true;
