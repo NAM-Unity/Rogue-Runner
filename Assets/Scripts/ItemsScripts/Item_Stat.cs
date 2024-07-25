@@ -2,13 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item : MonoBehaviour
+public class Item_Stat : MonoBehaviour
 {
-    public ItemSO itemData;
-
+    [SerializeField]
+    private SpriteRenderer _spriteRenderer;
+    public ItemSO ItemData;
+    void Start()
+    {
+        _spriteRenderer.sprite = ItemData.ItemSprite;
+    }
     void ApplyStatEffects(PlayerStats player)
     {
-        foreach (var modifier in itemData.Modifiers)
+        foreach (var modifier in ItemData.Modifiers)
         {
             if (modifier.IsAddition)
             {
