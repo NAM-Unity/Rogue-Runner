@@ -1,26 +1,35 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class PlayerLineChanger : MonoBehaviour
 {
-    [SerializeField] private float _speed = 0.5f;
-    [SerializeField] private Rigidbody2D _rb;
+    [SerializeField] private float _speed = 1;
+    private Rigidbody2D _rb;
 
     private float _destention, _start, _progress;
     private bool _isMoving = false;
+
+    private void Awake() {
+        _rb = GetComponent<Rigidbody2D>();
+    }
 
     private void FixedUpdate()
     {
         if (!_isMoving) return;
 
-        _progress += Time.fixedDeltaTime * _speed;
-        if (_progress >= 1) {
-            _progress = 1;
+        if (_progress == 1) {
             _isMoving = false;
+            _rb.velocity = new Vector2(0, _rb.velocity.y);
+            return;
         }
 
-        var dest = Mathf.SmoothStep(_start, _destention, _progress);
+        _progress += Time.fixedDeltaTime * _speed;
+        _progress = Mathf.Clamp01(_progress);
 
-        _rb.MovePosition(new Vector2(dest, transform.position.y));
+        var shouldBeCovered = Mathf.SmoothStep(_start, _destention, _progress);
+        var velocity = shouldBeCovered - transform.position.x;
+
+        _rb.velocity = new Vector2(velocity / Time.fixedDeltaTime, _rb.velocity.y);
     }
 
     public void ChangeLine(float destention)
