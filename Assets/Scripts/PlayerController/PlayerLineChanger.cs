@@ -2,34 +2,32 @@ using UnityEngine;
 
 public class PlayerLineChanger : MonoBehaviour
 {
-    [SerializeField] private float _speed = 5f;
+    [SerializeField] private float _speed = 0.5f;
     [SerializeField] private Rigidbody2D _rb;
 
-    private float _destention;
+    private float _destention, _start, _progress;
     private bool _isMoving = false;
 
     private void FixedUpdate()
     {
         if (!_isMoving) return;
 
-        var distanceVector = transform.position.x - _destention;
-        var distance = Mathf.Abs(distanceVector);
-        var moveAmount = _speed * Time.fixedDeltaTime;
-
-        Debug.Log(distanceVector);
-
-        if (distance < moveAmount)
-        {
+        _progress += Time.fixedDeltaTime * _speed;
+        if (_progress >= 1) {
+            _progress = 1;
             _isMoving = false;
-            moveAmount = distance;
         }
 
-        _rb.MovePosition(_rb.position + Mathf.Sign(distanceVector) * moveAmount * Vector2.left);
+        var dest = Mathf.SmoothStep(_start, _destention, _progress);
+
+        _rb.MovePosition(new Vector2(dest, transform.position.y));
     }
 
     public void ChangeLine(float destention)
     {
         _destention = destention;
+        _start = transform.position.x;
         _isMoving = true;
+        _progress = 0;
     }
 }
