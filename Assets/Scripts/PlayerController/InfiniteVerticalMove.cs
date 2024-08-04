@@ -1,22 +1,20 @@
 using System.Collections;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(KinematicMoveController))]
 public class InfiniteVerticalMove : MonoBehaviour
 {
-    public float startSpeed, acceleration;
-    private Rigidbody2D _rb;
+    public float speed, acceleration;
+    private KinematicMoveController _move;
 
     private void Awake()
     {
-        _rb = GetComponent<Rigidbody2D>();
-        _rb.velocity = Vector2.up * startSpeed;
+        _move = GetComponent<KinematicMoveController>();
     }
 
     private void FixedUpdate()
     {
-        var newVelocity = _rb.velocity;
-        newVelocity.y += acceleration * Time.fixedDeltaTime;
-        _rb.velocity = newVelocity;
+        _move.Move(speed * Time.fixedDeltaTime * Vector2.up);
+        speed += acceleration * Time.fixedDeltaTime;
     }
 }
