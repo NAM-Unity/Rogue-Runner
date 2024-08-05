@@ -1,25 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 public class PlayerStats : CreatureStats
 {
     void Start()
     {
-        _stats = new Dictionary<StatType, float>()
+        _stats = new Dictionary<StatType, StatHandler>()
         {
-            { StatType.Health, 100f },
-            { StatType.MaxHealth, 100f },
-            { StatType.ArmorPercentage, 0f },
-            { StatType.ReflectionPercentage, 0f },
-            { StatType.AbilityCooldown, 0f },
-            { StatType.Dmg, 10f },
-            { StatType.Firedmg, 0f },
-            { StatType.Electrodmg, 0f },
-            { StatType.Bleedingdmg, 0f },
-            { StatType.Naturedmg, 0f },
-            { StatType.Confusiondmg, 0f },
-            { StatType.EffectsDuration, 0f }
+            { StatType.Health, new HealthStatHandler(100f) },
+            { StatType.ArmorPercentage, new PercentageStatHandler() },
+            { StatType.ReflectionPercentage, new PercentageStatHandler() },
+            { StatType.AbilityCooldown, new SimpleStatHandler() },
+            { StatType.Dmg, new SimpleStatHandler() },
+            { StatType.Firedmg, new SimpleStatHandler() },
+            { StatType.Electrodmg, new SimpleStatHandler() },
+            { StatType.Bleedingdmg, new SimpleStatHandler() },
+            { StatType.Naturedmg, new SimpleStatHandler() },
+            { StatType.Confusiondmg, new SimpleStatHandler() },
+            { StatType.EffectsDuration, new SimpleStatHandler() }
         };
     }
 
