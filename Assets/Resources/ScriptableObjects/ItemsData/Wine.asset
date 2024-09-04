@@ -10,14 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff5e7df3764078143950f313732a6911, type: 3}
-  m_Name: First aid kit
+  m_Name: Wine
   m_EditorClassIdentifier: 
-  ItemName: First aid kit
-  ProbabilityPercentage: 70
-  ItemSprite: {fileID: 21300000, guid: e0fb4cb3c4a32b9479e6e7e10c813455, type: 3}
+  ItemName: Wine
+  ProbabilityPercentage: 30
+  ItemSprite: {fileID: 968971778, guid: 08519e99f6385184ca9459d52f5de10a, type: 3}
   Temporary: 1
-  ItemDescription: Heal 10 hp
+  ItemDescription: Regen Amount +2hp\nRegen cooldown -1 sec\nEffects Duration to
+    enemy -1 sec
   Modifiers:
-  - Stat: 0
-    Value: 10
+  - Stat: 2
+    Value: 2
+    IsAddition: 1
+  - Stat: 3
+    Value: -1
+    IsAddition: 1
+  - Stat: 13
+    Value: -1
     IsAddition: 1

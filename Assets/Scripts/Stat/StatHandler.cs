@@ -20,6 +20,7 @@ public class HealthStatHandler : StatHandler
     public HealthStatHandler(float maxHealth)
     {
         MaxHealth = maxHealth;
+        _value = MaxHealth-10;
     }
 
     protected override float Validate(float value)

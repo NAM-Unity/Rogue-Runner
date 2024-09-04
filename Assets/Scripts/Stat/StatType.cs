@@ -2,6 +2,8 @@ public enum StatType
 {
     Health,
     MaxHealth,
+    RegenAmount,
+    RegenTime,
     ArmorPercentage,
     ReflectionPercentage,
     AbilityCooldown,
