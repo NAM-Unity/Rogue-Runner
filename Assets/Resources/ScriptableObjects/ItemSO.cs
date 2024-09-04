@@ -6,6 +6,8 @@ public class ItemSO : ScriptableObject
     public string ItemName;
     public float ProbabilityPercentage;
     public Sprite ItemSprite;
+    public bool Temporary;
+    public string ItemDescription;
 
     [System.Serializable]
     public class StatModifier

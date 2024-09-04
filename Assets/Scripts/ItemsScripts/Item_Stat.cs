@@ -25,14 +25,11 @@ public class Item_Stat : MonoBehaviour
             }
         }
     }
-
-    void OnTriggerEnter(Collider other)
+    public ItemSO PickedUp(PlayerStats player)
     {
-        PlayerStats player = other.GetComponent<PlayerStats>();
-        if (player != null)
-        {
-            ApplyStatEffects(player);
+        ApplyStatEffects(player);
             Destroy(gameObject);
-        }
+        return ItemData;
     }
+        
 }

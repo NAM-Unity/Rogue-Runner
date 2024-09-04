@@ -3,6 +3,7 @@ using UnityEngine;
 
 public abstract class CreatureStats : MonoBehaviour
 {
+    [SerializeField]
     public Dictionary<StatType, StatHandler> _stats;
 
     void Start()
